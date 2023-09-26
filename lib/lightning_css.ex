@@ -1,6 +1,6 @@
-defmodule Lightningcss do
+defmodule LightningCSS do
   @moduledoc """
-  Documentation for `Lightningcss`.
+  Documentation for `LightningCSS`.
   """
 
   @doc """
@@ -8,7 +8,7 @@ defmodule Lightningcss do
 
   ## Examples
 
-      iex> Lightningcss.hello()
+      iex> LightningCSS.hello()
       :world
 
   """

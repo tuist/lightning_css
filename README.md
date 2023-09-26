@@ -1,16 +1,16 @@
-# Lightningcss
+# `lightning_css`
 
 **TODO: Add description**
 
 ## Installation
 
 If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `lightningcss` to your list of dependencies in `mix.exs`:
+by adding `lightning_css` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
   [
-    {:lightningcss, "~> 0.1.0"}
+    {:lightning_css, "~> 0.1.0"}
   ]
 end
 ```

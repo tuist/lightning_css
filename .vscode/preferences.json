@@ -1,0 +1,7 @@
+{
+  "recommendations": [
+    "JakeBecker.elixir-ls",
+    "samuel-pordeus.elixir-test",
+    "pantajoe.vscode-elixir-credo"
+  ]
+}

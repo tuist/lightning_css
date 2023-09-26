@@ -1,0 +1,7 @@
+{
+  "[elixir]": {
+    "editor.formatOnSave": false,
+    "editor.defaultFormatter": "saratravi.elixir-formatter"
+  },
+  "elixirLS.dialyzerEnabled": true
+}
