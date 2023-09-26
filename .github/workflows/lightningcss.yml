@@ -28,7 +28,9 @@ jobs:
         with:
           otp-version: ${{ env.OTP_VERSION }}
           elixir-version: ${{ env.ELIXIR_VERSION }}
-
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
       - name: Restore Cache
         uses: actions/cache@v3
         id: mix-cache
@@ -53,7 +55,9 @@ jobs:
         with:
           otp-version: ${{ env.OTP_VERSION }}
           elixir-version: ${{ env.ELIXIR_VERSION }}
-
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
       - name: Restore Cache
         uses: actions/cache@v3
         id: mix-cache
@@ -78,7 +82,9 @@ jobs:
         with:
           otp-version: ${{ env.OTP_VERSION }}
           elixir-version: ${{ env.ELIXIR_VERSION }}
-
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
       - name: Restore Cache
         uses: actions/cache@v3
         id: mix-cache
