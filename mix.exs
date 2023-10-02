@@ -2,6 +2,7 @@ defmodule LightningCSS.MixProject do
   use Mix.Project
 
   @version "0.1.0"
+  @source_url "https://github.com/glossia/lightning_css"
 
   def project do
     [
@@ -20,13 +21,16 @@ defmodule LightningCSS.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      extra_applications: [:logger]
+      extra_applications: [:logger, inets: :optional, ssl: :optional],
+      mod: {LightningCSS, []},
+      env: [default: []]
     ]
   end
 
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
+      {:castore, ">= 0.0.0"},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
       {:modulex, "~> 0.7.0", runtime: false},
       {:boundary, "~> 0.10", runtime: false},
@@ -39,7 +43,7 @@ defmodule LightningCSS.MixProject do
     [
       name: "lightning_css",
       licenses: ["MIT"],
-      links: %{"GitHub" => "https://github.com/glossia/lightning_css"}
+      links: %{"GitHub" => @source_url}
     ]
   end
 
@@ -47,7 +51,7 @@ defmodule LightningCSS.MixProject do
     [
       main: "lightning_css",
       extras: ["README.md"],
-      source_url: "https://github.com/glossia/lightning_css/",
+      source_url: @source_url,
       source_ref: @version
     ]
   end

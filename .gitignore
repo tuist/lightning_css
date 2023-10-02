@@ -24,3 +24,7 @@ lightning_css-*.tar
 
 # Temporary files, for example, from tests.
 /tmp/
+
+# Bundled assets
+priv/static
+!priv/static/.gitkeep
