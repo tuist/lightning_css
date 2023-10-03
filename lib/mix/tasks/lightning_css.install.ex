@@ -14,8 +14,7 @@ defmodule Mix.Tasks.LightningCss.Install do
 
   ## Options
 
-      * `--runtime-config` - load the runtime configuration
-        before executing command
+      * `--profile` - the profile to use.
 
       * `--if-missing` - install only if the given version
         does not exist
@@ -28,15 +27,16 @@ defmodule Mix.Tasks.LightningCss.Install do
 
   @impl true
   def run(args) do
-    valid_options = [runtime_config: :boolean, if_missing: :boolean]
+    valid_options = [profile: :boolean, if_missing: :boolean]
 
     case OptionParser.parse_head!(args, strict: valid_options) do
       {opts, []} ->
-        if opts[:runtime_config], do: Mix.Task.run("app.config")
+        if opts[:profile], do: Mix.Task.run("app.config")
 
         if opts[:if_missing] && latest_version?() do
           :ok
         else
+          # credo:disable-for-next-line
           if function_exported?(Mix, :ensure_application!, 1) do
             Mix.ensure_application!(:inets)
             Mix.ensure_application!(:ssl)
@@ -50,7 +50,7 @@ defmodule Mix.Tasks.LightningCss.Install do
         Invalid arguments to lightning_css.install, expected one of:
 
             mix lightning_css.install
-            mix lightning_css.install --runtime-config
+            mix lightning_css.install --profile dev
             mix lightning_css.install --if-missing
         """)
     end

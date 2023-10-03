@@ -1,4 +1,8 @@
 defmodule LightningCSS do
+  @moduledoc """
+  Lightning CSS
+  """
+
   # Package: https://registry.npmjs.org/lightningcss-cli/latest
   # Website: https://www.npmjs.com/package/lightningcss-cli
   @latest_version "1.22.0"
@@ -103,6 +107,7 @@ defmodule LightningCSS do
   end
 
   # Available targets: https://registry.npmjs.org/lightningcss-cli/latest
+  # credo:disable-for-next-line
   def target do
     case :os.type() do
       # Assuming it's an x86 CPU
@@ -125,7 +130,6 @@ defmodule LightningCSS do
           "i686" -> "#{osname}-ia32"
           "i386" -> "#{osname}-ia32"
           "aarch64" -> "#{osname}-arm64"
-          # TODO: remove when we require OTP 24
           "arm" when osname == :darwin -> "darwin-arm64"
           "arm" -> "#{osname}-arm"
           "armv7" <> _ -> "#{osname}-arm"
@@ -156,10 +160,6 @@ defmodule LightningCSS do
       into: IO.stream(:stdio, :line),
       stderr_to_stdout: true
     ]
-
-
-    dbg(opts)
-    dbg(([bin_path()] ++ args) |> Enum.join(" "))
 
     bin_path()
     |> System.cmd(args ++ extra_args, opts)
