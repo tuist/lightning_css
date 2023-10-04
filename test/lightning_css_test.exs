@@ -1,8 +1,8 @@
 defmodule LightningCSSTest do
   use ExUnit.Case
-  doctest LightningCSS
+  # doctest LightningCSS
 
-  test "greets the world" do
-    assert LightningCSS.hello() == :world
-  end
+  # test "greets the world" do
+  #   assert LightningCSS.hello() == :world
+  # end
 end

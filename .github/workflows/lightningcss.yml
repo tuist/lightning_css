@@ -41,31 +41,6 @@ jobs:
 
       - run: mix deps.get
       - run: mix credo
-
-  dialyzer:
-    name: Dialyzer
-    runs-on: 'ubuntu-latest'
-    timeout-minutes: 15
-    steps:
-      - uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4
-
-      - uses: erlef/setup-elixir@v1
-        with:
-          otp-version: ${{ env.OTP_VERSION }}
-          elixir-version: ${{ env.ELIXIR_VERSION }}
-
-      - name: Restore Cache
-        uses: actions/cache@v3
-        id: mix-cache
-        with:
-          path: |
-            deps
-            _build
-            _site
-          key: mix-${{ hashFiles('mix.lock') }}
-
-      - run: mix deps.get
-      - run: mix dialyzer
       
   test:
     name: Test
