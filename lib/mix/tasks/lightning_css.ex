@@ -6,7 +6,7 @@ defmodule Mix.Tasks.LightningCss do
   Runs lightning_css with the given profile and args.
 
   ```bash
-  $ mix lightning_css --runtime-profile dev
+  $ mix lightning_css --runtime-config dev
   ```
 
   The task will install lightning_css if it hasn't been installed previously
@@ -14,7 +14,8 @@ defmodule Mix.Tasks.LightningCss do
 
   ## Options
 
-      * `--profile` - the profile to use.
+      * `--runtime-config` - load the runtime configuration
+      before executing command
 
   """
 
@@ -22,7 +23,7 @@ defmodule Mix.Tasks.LightningCss do
 
   @impl true
   def run(args) do
-    switches = [profile: :boolean]
+    switches = [runtime_config: :boolean]
     {opts, remaining_args} = OptionParser.parse_head!(args, switches: switches)
 
     if function_exported?(Mix, :ensure_application!, 1) do
@@ -30,7 +31,7 @@ defmodule Mix.Tasks.LightningCss do
       Mix.ensure_application!(:ssl)
     end
 
-    if opts[:profile] do
+    if opts[:runtime_config] do
       Mix.Task.run("app.config")
     else
       Application.ensure_all_started(:lightning_css)
