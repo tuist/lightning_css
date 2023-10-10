@@ -47,25 +47,6 @@ defmodule LightningCSS do
   end
 
   @doc """
-  Returns the configuration for the given profile.
-
-  Returns nil if the profile does not exist.
-  """
-  def config_for!(profile) when is_atom(profile) do
-    Application.get_env(:lightning_css, profile) ||
-      raise ArgumentError, """
-      unknown lightning_css profile. Make sure the profile is defined in your config/config.exs file, such as:
-
-          config :lightning_css,
-            #{profile}: [
-              args: ~w(css/app.css --bundle --targets='last 10 versions' --output-dir=../priv/static/assets),
-              cd: Path.expand("../assets", __DIR__),
-              env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
-            ]
-      """
-  end
-
-  @doc """
   Returns the most recent Lightning CSS version known by this package.
   """
   @spec latest_version() :: String.t()
@@ -145,25 +126,33 @@ defmodule LightningCSS do
   The task output will be streamed directly to stdio. It
   returns the status of the underlying call.
   """
-  def run(profile, extra_args) when is_atom(profile) and is_list(extra_args) do
-    config = config_for!(profile)
-    args = config[:args] || []
+  def run(profile, extra_args, opts) when is_atom(profile) and is_list(extra_args) do
+    watch = opts |> Keyword.get(:watch, false)
 
-    if args == [] and extra_args == [] do
-      raise "no arguments passed to lightning_css"
+    id = ([profile] ++ extra_args ++ [watch]) |> Enum.map(&to_string/1) |> Enum.join("_") |> String.to_atom()
+
+    ref =
+      __MODULE__.Supervisor
+      |> Supervisor.start_child(
+        Supervisor.child_spec({LightningCSS.Runner, %{
+          profile: profile,
+          extra_args: extra_args,
+          watch: watch
+        }}, id: id, restart: :transient)
+     )
+      |> case do
+        {:ok, pid} -> pid
+        {:error, {:already_started, pid}} -> pid
+      end
+      |> Process.monitor()
+
+    receive do
+      {:DOWN, ^ref, _, _, _} ->
+        :ok
+      something ->
+        dbg(something)
     end
-
-
-    opts = [
-      cd: config[:cd] || File.cwd!(),
-      env: config[:env] || %{},
-      into: IO.stream(:stdio, :line),
-      stderr_to_stdout: true
-    ]
-
-    bin_path()
-    |> System.cmd(args ++ extra_args, opts)
-    |> elem(1)
+    0
   end
 
 
@@ -172,10 +161,10 @@ defmodule LightningCSS do
 
   Returns the same as `run/2`.
   """
-  def install_and_run(profile, args) do
+  def install_and_run(profile, args, opts \\ []) do
     File.exists?(bin_path()) || start_unique_install_worker()
 
-    run(profile, args)
+    run(profile, args, opts)
   end
 
   defp start_unique_install_worker() do
@@ -195,6 +184,25 @@ defmodule LightningCSS do
     end
   end
 
+
+  @doc """
+  Returns the configuration for the given profile.
+
+  Returns nil if the profile does not exist.
+  """
+  def config_for!(profile) when is_atom(profile) do
+    Application.get_env(:lightning_css, profile) ||
+      raise ArgumentError, """
+      unknown lightning_css profile. Make sure the profile is defined in your config/config.exs file, such as:
+
+          config :lightning_css,
+            #{profile}: [
+              args: ~w(css/app.css --bundle --targets='last 10 versions' --output-dir=../priv/static/assets),
+              cd: Path.expand("../assets", __DIR__),
+              env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
+            ]
+      """
+  end
 
   @doc """
   Installs lightning_css with `configured_version/0`.

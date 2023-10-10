@@ -27,7 +27,7 @@ config :lightning_css,
   version: "1.22.0",
   dev: [
     args: ~w(assets/foo.css --bundle --output-dir=static),
-    watch: "assets/**/*.css",
+    watch_files: "assets/**/*.css",
     cd: Path.expand("../priv", __DIR__),
     env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
   ]
@@ -38,7 +38,7 @@ config :lightning_css,
 - **version:** Indicates the version that the package will download and use. When absent, it defaults to the value of `@latest_version` at [`lib/lightning_css.ex`](./lib/lightning_css.ex).
 - **profiles:** Additional keys in the configuration keyword list represent profiles. Profiles are a combination of attributes the Lightning CSS can be executed with. You can indicate the profile to use when invoking the Mix task by using the `--profile` flag, for example `mix lightning_css --profile dev`. A profile is represented by a keyword list with the following attributes:
   - **args:** An list of strings representing the arguments that will be passed to the Lightning CSS executable.
-  - **watch (optional):** A glob pattern to enable file-watching. When present, the Mix task locks the process and re-runs Lightning CSS when files change.
+  - **watch_files (optional):** A glob pattern that will be used when Lightning CSS is invoked with `--watch` to match the file changes against it.
   - **cd (optional):** The directory from where Lightning CSS is executed. When absent, it defaults to the project's root directory.
   - **env (optional):** A set of environment variables to make available to the Lightning CSS process.
 
@@ -53,7 +53,7 @@ config :my_app, MyAppWeb.Endpoint,
   # ...other attributes
   watchers: [
     # :default is the name of the profile. Update it to match yours.
-    css: {LightningCSS, :install_and_run, [:default, ~w()]}
+    css: {LightningCSS, :install_and_run, [:default, ~w(), watch: true]}
   ]
 ```
 
