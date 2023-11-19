@@ -1,5 +1,7 @@
 # `lightning_css`
 
+<!-- MDOC !-->
+
 [![Lightning CSS](https://github.com/glossia/lightning_css/actions/workflows/lightningcss.yml/badge.svg)](https://github.com/glossia/lightning_css/actions/workflows/lightningcss.yml)
 
 `lightning_css` is an Elixir package to integrate [Lightning CSS](https://lightningcss.dev/) into an Elixir project.

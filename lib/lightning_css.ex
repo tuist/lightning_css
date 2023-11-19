@@ -1,7 +1,5 @@
 defmodule LightningCSS do
-  @moduledoc """
-  Lightning CSS
-  """
+  @moduledoc "README.md" |> File.read!() |> String.split("<!-- MDOC !-->") |> Enum.fetch!(1)
 
   # Package: https://registry.npmjs.org/lightningcss-cli/latest
   # Website: https://www.npmjs.com/package/lightningcss-cli
