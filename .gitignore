@@ -28,3 +28,5 @@ lightning_css-*.tar
 # Bundled assets
 priv/static
 !priv/static/.gitkeep
+
+.DS_Store
