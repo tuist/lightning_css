@@ -17,21 +17,23 @@ defmodule LightningCSS.Runner do
     config = LightningCSS.config_for!(profile)
     cd = config |> Keyword.get(:cd, File.cwd!())
 
-    case {watch, config[:watch_files]} do
+    watcher_pid = case {watch, config[:watch_files]} do
       {true, glob} when is_binary(glob) ->
         dirs = Path.join(cd, glob)
         Logger.info("Watching #{dirs}")
         {:ok, watcher_pid} = FileSystem.start_link(dirs: [dirs])
         FileSystem.subscribe(watcher_pid)
+        watcher_pid
       _ -> nil
     end
 
-    args = args |> Map.put(:config, config) |> Map.put(:cd, cd)
+    args = args |> Map.put(:config, config) |> Map.put(:cd, cd) |> Map.put(:watcher_pid, watcher_pid)
 
     gen_server_pid = self()
     args = args |> Map.put(:gen_server_pid, gen_server_pid)
 
     %{ pid: process_pid } = Task.async(fn ->
+      Logger.info("Running Lightning CSS")
       __MODULE__.run_lightning_css(args)
     end)
 
@@ -54,7 +56,6 @@ defmodule LightningCSS.Runner do
       stderr_to_stdout: true
     ]
 
-    Logger.info("Running Lightning CSS")
     command_string = ([Path.relative_to_cwd(LightningCSS.bin_path())] ++ args ++ extra_args) |> Enum.join(" ")
     Logger.debug("Command: #{command_string}", opts)
     exit_status = LightningCSS.bin_path()
@@ -64,26 +65,26 @@ defmodule LightningCSS.Runner do
     send(gen_server_pid, {:lightning_css_exited, exit_status})
   end
 
-  def handle_info({:file_event, watcher_pid, {path, events}}, %{watcher_pid: watcher_pid}=state) do
-    Logger.info("File event #{inspect(events)} on #{path}")
-    # YOUR OWN LOGIC FOR PATH AND EVENTS
+  def handle_info({:file_event, _watcher_pid, {_path, _events}}, state) do
+    %{ pid: process_pid } = Task.async(fn ->
+      Logger.info("Changes detected. Running Lightning CSS")
+      __MODULE__.run_lightning_css(state)
+    end)
+    state = state |> Map.put(:process_pid, process_pid)
     {:noreply, state}
   end
 
   def handle_info({:file_event, watcher_pid, :stop}, %{watcher_pid: watcher_pid}=state) do
-    # YOUR OWN LOGIC WHEN MONITOR STOP
-    {:noreply, state}
+    {:stop, :normal, state}
   end
 
   def handle_info({:lightning_css_exited, exit_status}, %{ watch: watch } = state) do
     case {watch, exit_status} do
       {true, 0} -> {:noreply, state }
       {false, 0} -> {:stop, :normal, state}
-      {true, status} ->
-        dbg("LightningCSS exited with status #{status}")
+      {true, _status} ->
         {:no_reply, state}
       {false, status} ->
-        dbg("LightningCSS exited with status #{status}")
         {:stop, {:error_and_no_watch, status}, state}
     end
   end
