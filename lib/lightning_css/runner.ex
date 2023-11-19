@@ -1,4 +1,6 @@
 defmodule LightningCSS.Runner do
+  @moduledoc false
+
   use GenServer
   require Logger
 
@@ -13,7 +15,7 @@ defmodule LightningCSS.Runner do
   end
 
   @spec init(args :: init_args) :: {:ok, any()}
-  def init(%{ profile: profile, extra_args: _, watch: watch} = args) do
+  def init(%{profile: profile, extra_args: _, watch: watch} = args) do
     config = LightningCSS.config_for!(profile)
     cd = config |> Keyword.get(:cd, File.cwd!())
 
@@ -32,7 +34,7 @@ defmodule LightningCSS.Runner do
     gen_server_pid = self()
     args = args |> Map.put(:gen_server_pid, gen_server_pid)
 
-    %{ pid: process_pid } = Task.async(fn ->
+    %{pid: process_pid} = Task.async(fn ->
       Logger.info("Running Lightning CSS")
       __MODULE__.run_lightning_css(args)
     end)
@@ -42,7 +44,7 @@ defmodule LightningCSS.Runner do
     {:ok, args}
   end
 
-  def run_lightning_css(%{ config: config, extra_args: extra_args, cd: cd, gen_server_pid: gen_server_pid }) do
+  def run_lightning_css(%{config: config, extra_args: extra_args, cd: cd, gen_server_pid: gen_server_pid}) do
     args = config[:args] || []
 
     if args == [] and extra_args == [] do
@@ -66,7 +68,7 @@ defmodule LightningCSS.Runner do
   end
 
   def handle_info({:file_event, _watcher_pid, {_path, _events}}, state) do
-    %{ pid: process_pid } = Task.async(fn ->
+    %{pid: process_pid} = Task.async(fn ->
       Logger.info("Changes detected. Running Lightning CSS")
       __MODULE__.run_lightning_css(state)
     end)
@@ -74,11 +76,11 @@ defmodule LightningCSS.Runner do
     {:noreply, state}
   end
 
-  def handle_info({:file_event, watcher_pid, :stop}, %{watcher_pid: watcher_pid}=state) do
+  def handle_info({:file_event, watcher_pid, :stop}, %{watcher_pid: watcher_pid} = state) do
     {:stop, :normal, state}
   end
 
-  def handle_info({:lightning_css_exited, exit_status}, %{ watch: watch } = state) do
+  def handle_info({:lightning_css_exited, exit_status}, %{watch: watch} = state) do
     case {watch, exit_status} do
       {true, 0} -> {:noreply, state }
       {false, 0} -> {:stop, :normal, state}

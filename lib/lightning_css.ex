@@ -129,7 +129,7 @@ defmodule LightningCSS do
   def run(profile, extra_args, opts) when is_atom(profile) and is_list(extra_args) do
     watch = opts |> Keyword.get(:watch, false)
 
-    id = ([profile] ++ extra_args ++ [watch]) |> Enum.map(&to_string/1) |> Enum.join("_") |> String.to_atom()
+    id = ([profile] ++ extra_args ++ [watch]) |> Enum.map_join("_", &to_string/1) |> String.to_atom()
 
     ref =
       __MODULE__.Supervisor
@@ -149,8 +149,8 @@ defmodule LightningCSS do
     receive do
       {:DOWN, ^ref, _, _, _} ->
         :ok
-      something ->
-        dbg(something)
+      _ ->
+        :ok
     end
     0
   end
