@@ -33,8 +33,10 @@ defmodule Mix.Tasks.LightningCss do
     end
 
     if opts[:runtime_config] do
+      # Loads and configures all registered apps.
       Mix.Task.run("app.config")
     else
+      # Ensures that the application and their child application are started.
       Application.ensure_all_started(:lightning_css)
     end
 

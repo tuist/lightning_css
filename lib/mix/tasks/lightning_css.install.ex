@@ -39,6 +39,8 @@ defmodule Mix.Tasks.LightningCss.Install do
         else
           # credo:disable-for-next-line
           if function_exported?(Mix, :ensure_application!, 1) do
+            # ensure_application! ensures that the given application and its dependencies are availble
+            # in the path
             Mix.ensure_application!(:inets)
             Mix.ensure_application!(:ssl)
           end

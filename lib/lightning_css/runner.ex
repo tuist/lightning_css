@@ -64,6 +64,17 @@ defmodule LightningCSS.Runner do
     send(gen_server_pid, {:lightning_css_exited, exit_status})
   end
 
+  def handle_info({:file_event, watcher_pid, {path, events}}, %{watcher_pid: watcher_pid}=state) do
+    Logger.info("File event #{inspect(events)} on #{path}")
+    # YOUR OWN LOGIC FOR PATH AND EVENTS
+    {:noreply, state}
+  end
+
+  def handle_info({:file_event, watcher_pid, :stop}, %{watcher_pid: watcher_pid}=state) do
+    # YOUR OWN LOGIC WHEN MONITOR STOP
+    {:noreply, state}
+  end
+
   def handle_info({:lightning_css_exited, exit_status}, %{ watch: watch } = state) do
     case {watch, exit_status} do
       {true, 0} -> {:noreply, state }
@@ -87,15 +98,5 @@ defmodule LightningCSS.Runner do
 
   def terminate(_, _) do
     :ok
-  end
-
-  def handle_info({:file_event, watcher_pid, {path, events}}, %{watcher_pid: watcher_pid}=state) do
-    # YOUR OWN LOGIC FOR PATH AND EVENTS
-    {:noreply, state}
-  end
-
-  def handle_info({:file_event, watcher_pid, :stop}, %{watcher_pid: watcher_pid}=state) do
-    # YOUR OWN LOGIC WHEN MONITOR STOP
-    {:noreply, state}
   end
 end
