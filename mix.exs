@@ -31,7 +31,7 @@ defmodule LightningCSS.MixProject do
   defp deps do
     [
       {:castore, ">= 0.0.0"},
-      {:file_system, "~> 0.2.10"},
+      {:file_system, "~> 1.0.0"},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
       {:modulex, "~> 0.7.0", runtime: false},
       {:boundary, "~> 0.10", runtime: false},
