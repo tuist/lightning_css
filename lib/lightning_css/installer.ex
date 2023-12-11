@@ -5,7 +5,7 @@ defmodule LightningCSS.Installer do
   Installs lightning_css with `configured_version/0`.
   """
   def install do
-    version = LightningCSS.Versions.configured()
+    version = LightningCSS.Versions.to_use()
     tmp_opts = if System.get_env("MIX_XDG"), do: %{os: :linux}, else: %{}
     target = LightningCSS.Architectures.target()
 

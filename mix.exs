@@ -35,7 +35,8 @@ defmodule LightningCSS.MixProject do
       {:modulex, "~> 0.7.0", runtime: false},
       {:boundary, "~> 0.10", runtime: false},
       {:dialyxir, "~> 1.3", only: [:dev, :test], runtime: false},
-      {:credo, "~> 1.7", only: [:dev, :test], runtime: false}
+      {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
+      {:mimic, "~> 1.7", only: :test}
     ]
   end
 

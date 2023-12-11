@@ -24,9 +24,17 @@ defmodule LightningCSS.Versions do
   @doc """
   Returns the version of Lightning CSS that this package should use.
   """
-  @spec configured() :: String.t()
+  @spec configured() :: String.t() | nil
   def configured do
-    Application.get_env(:lightning_css, :version, latest())
+    Application.get_env(:lightning_css, :version)
+  end
+
+  @doc """
+  Returns the configured version falling back to the latest if there's no version configured.
+  """
+  @spec to_use() :: String.t()
+  def to_use do
+    configured() || latest()
   end
 
   @doc """

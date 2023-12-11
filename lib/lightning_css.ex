@@ -5,7 +5,7 @@ defmodule LightningCSS do
   require Logger
 
   def start(_, _) do
-    unless Application.get_env(:lightning_css, :version) do
+    unless LightningCSS.Versions.configured() do
       Logger.warning("""
       lightning_css version is not configured. Please set it in your config files:
 
@@ -13,7 +13,7 @@ defmodule LightningCSS do
       """)
     end
 
-    configured_version = LightningCSS.Versions.configured()
+    configured_version = LightningCSS.Versions.to_use()
 
     case LightningCSS.Versions.bin() do
       {:ok, ^configured_version} ->

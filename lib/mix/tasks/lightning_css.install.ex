@@ -60,7 +60,7 @@ defmodule Mix.Tasks.LightningCss.Install do
   end
 
   defp latest_version?() do
-    version = LightningCSS.Versions.configured()
+    version = LightningCSS.Versions.to_use()
     match?({:ok, ^version}, LightningCSS.Versions.bin())
   end
 end
