@@ -1,4 +1,7 @@
 defmodule LightningCSS.Configuration do
+  @moduledoc """
+  This module groups functions to read the configuration from the application environment.
+  """
   @doc """
   Returns the configuration for the given profile.
 

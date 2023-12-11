@@ -1,4 +1,8 @@
 defmodule LightningCSS.Versions do
+  @moduledoc """
+  This module groups functions to read default and remote versions of Lightning CSS.
+  """
+
   # Package: https://registry.npmjs.org/lightningcss-cli/latest
   # Website: https://www.npmjs.com/package/lightningcss-cli
   @latest_version "1.22.0"

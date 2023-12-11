@@ -1,4 +1,8 @@
 defmodule LightningCSS.Paths do
+  @moduledoc """
+  This module groups utilities to read the paths from the application environment.
+  """
+
   @doc """
   Returns the path to the executable.
 

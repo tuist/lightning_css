@@ -1,4 +1,8 @@
 defmodule LightningCSS.Installer do
+  @moduledoc """
+  This module encapsulates the installation logic that is responsible for pulling the right binary (version and architecture)
+  from the npm registry.
+  """
   require Logger
 
   @doc """

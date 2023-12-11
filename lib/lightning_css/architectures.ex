@@ -1,4 +1,8 @@
 defmodule LightningCSS.Architectures do
+  @moduledoc """
+  This module groups functions to read the architecture from the environment in which the code is running.
+  """
+
   # Available targets: https://registry.npmjs.org/lightningcss-cli/latest
   # credo:disable-for-next-line
   def target do
