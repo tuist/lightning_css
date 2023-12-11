@@ -7,10 +7,10 @@ defmodule Mix.Tasks.LightningCss.Install do
   $ mix lightning_css.install --if-missing
   ```
 
-  By default, it installs #{LightningCSS.latest_version()} but you
+  By default, it installs #{LightningCSS.Versions.latest()} but you
   can configure it in your config files, such as:
 
-      config :lightning_css, :version, "#{LightningCSS.latest_version()}"
+      config :lightning_css, :version, "#{LightningCSS.Versions.latest()}"
 
   ## Options
 
@@ -45,7 +45,7 @@ defmodule Mix.Tasks.LightningCss.Install do
             Mix.ensure_application!(:ssl)
           end
 
-          LightningCSS.install()
+          LightningCSS.Installer.install()
         end
 
       {_, _} ->
@@ -60,7 +60,7 @@ defmodule Mix.Tasks.LightningCss.Install do
   end
 
   defp latest_version?() do
-    version = LightningCSS.configured_version()
-    match?({:ok, ^version}, LightningCSS.bin_version())
+    version = LightningCSS.Versions.configured()
+    match?({:ok, ^version}, LightningCSS.Versions.bin())
   end
 end

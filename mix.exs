@@ -9,8 +9,7 @@ defmodule LightningCSS.MixProject do
       app: :lightning_css,
       version: @version,
       elixir: "~> 1.15",
-      description:
-        "A wrapper for the Lightning CSS tool.",
+      description: "A wrapper for the Lightning CSS tool.",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       docs: docs(),
