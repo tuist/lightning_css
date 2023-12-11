@@ -50,10 +50,14 @@ defmodule LightningCSS.MixProject do
 
   defp docs() do
     [
-      main: "lightning_css",
-      extras: ["README.md"],
+      main: "LightningCSS",
+      extras: [
+        "LICENSE.md": [title: "License"],
+        "README.md": [title: "Overview"]
+      ],
       source_url: @source_url,
-      source_ref: @version
+      source_ref: @version,
+      formatters: ["html"]
     ]
   end
 end
