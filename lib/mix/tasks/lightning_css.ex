@@ -46,8 +46,9 @@ defmodule Mix.Tasks.LightningCss do
 
   defp install_and_run([profile | args] = all, opts) do
     case LightningCSS.install_and_run(String.to_atom(profile), args, opts) do
-      0 -> :ok
-      status -> Mix.raise("`mix lightning_css #{Enum.join(all, " ")}` exited with #{status}")
+      :ok -> :ok
+      {:error, {:exited, status}} ->
+        Mix.raise("`mix lightning_css #{Enum.join(all, " ")}` exited caused by lightningcss failing with status code #{status}")
     end
   end
 

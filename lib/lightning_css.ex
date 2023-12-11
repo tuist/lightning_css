@@ -124,6 +124,7 @@ defmodule LightningCSS do
   The task output will be streamed directly to stdio. It
   returns the status of the underlying call.
   """
+  @spec run(atom(), list(), Keyword.t()) :: :ok | {:error, {:exited, integer()}}
   def run(profile, extra_args, opts) when is_atom(profile) and is_list(extra_args) do
     watch = opts |> Keyword.get(:watch, false)
 
@@ -145,12 +146,11 @@ defmodule LightningCSS do
       |> Process.monitor()
 
     receive do
-      {:DOWN, ^ref, _, _, _} ->
-        :ok
+      {:DOWN, ^ref, _, _, {:error_and_no_watch, code}} ->
+        {:error, {:exited, code}}
       _ ->
         :ok
     end
-    0
   end
 
 
@@ -159,6 +159,7 @@ defmodule LightningCSS do
 
   Returns the same as `run/2`.
   """
+  @spec install_and_run(atom(), list(), Keyword.t()) :: integer()
   def install_and_run(profile, args, opts \\ []) do
     File.exists?(bin_path()) || start_unique_install_worker()
 
