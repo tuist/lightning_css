@@ -14,7 +14,7 @@ by adding `lightning_css` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:lightning_css, "~> 0.2.0"}
+    {:lightning_css, "~> 0.3.0"}
   ]
 end
 ```
