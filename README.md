@@ -33,7 +33,7 @@ After installing the package, you'll have to configure it in your project:
 config :lightning_css,
   version: "1.22.1",
   default: [
-    args: ~w(assets/css/app.css --bundle --output-file=priv/static/bundle.css),
+    args: ~w(assets/css/app.css --bundle --output-file=priv/static/styles/bundle.css),
     watch_files: "assets/css/**/*.css",
     cd: Path.expand("..", __DIR__),
     env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
