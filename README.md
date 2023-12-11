@@ -31,11 +31,11 @@ After installing the package, you'll have to configure it in your project:
 ```elixir
 # config/config.exs
 config :lightning_css,
-  version: "1.22.0",
+  version: "1.22.1",
   default: [
-    args: ~w(assets/foo.css --bundle --output-dir=static),
-    watch_files: "assets/**/*.css",
-    cd: Path.expand("../priv", __DIR__),
+    args: ~w(assets/css/app.css --bundle --output-file=priv/static/bundle.css),
+    watch_files: "assets/css/**/*.css",
+    cd: Path.expand("..", __DIR__),
     env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
   ]
 ```
