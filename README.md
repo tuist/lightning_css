@@ -60,7 +60,7 @@ config :my_app, MyAppWeb.Endpoint,
   # ...other attributes
   watchers: [
     # :default is the name of the profile. Update it to match yours.
-    css: {LightningCSS, :install_and_run, [:default, ~w(), watch: true]}
+    css: {LightningCSS, :install_and_run, [:default, ~w(), [watch: true]]}
   ]
 ```
 
