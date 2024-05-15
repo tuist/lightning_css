@@ -23,9 +23,8 @@ defmodule LightningCSS.Runner do
     watcher_pid =
       case {watch, config[:watch_files]} do
         {true, glob} when is_binary(glob) ->
-          dirs = Path.join(cd, glob)
-          Logger.info("Watching #{dirs}")
-          {:ok, watcher_pid} = FileSystem.start_link(dirs: [dirs])
+          dirs = expand_glob(Path.join(cd, glob))
+          {:ok, watcher_pid} = FileSystem.start_link(dirs: dirs)
           FileSystem.subscribe(watcher_pid)
           watcher_pid
 
@@ -48,6 +47,13 @@ defmodule LightningCSS.Runner do
     args = args |> Map.put(:process_pid, process_pid)
 
     {:ok, args}
+  end
+
+  defp expand_glob(watch_files) do
+    watch_files
+    |> List.wrap()
+    |> Enum.flat_map(&Path.wildcard/1)
+    |> Enum.uniq()
   end
 
   def run_lightning_css(%{
