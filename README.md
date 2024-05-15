@@ -2,12 +2,12 @@
 
 <!-- MDOC !-->
 
-[![Lightning CSS](https://github.com/glossia/lightning_css/actions/workflows/lightningcss.yml/badge.svg)](https://github.com/glossia/lightning_css/actions/workflows/lightningcss.yml)
+[![Lightning CSS](https://github.com/tuist/lightning_css/actions/workflows/lightningcss.yml/badge.svg)](https://github.com/tuist/lightning_css/actions/workflows/lightningcss.yml)
 [![Module Version](https://img.shields.io/hexpm/v/mimic.svg)](https://hex.pm/packages/lightning_css)
 [![Hex Docs](https://img.shields.io/badge/hex-docs-lightgreen.svg)](https://hexdocs.pm/lightning_css/)
 [![Total Download](https://img.shields.io/hexpm/dt/lightning_css.svg)](https://hex.pm/packages/lightning_css)
-[![License](https://img.shields.io/hexpm/l/lightning_css.svg)](https://github.com/glossia/lightning_css/blob/master/LICENSE)
-[![Last Updated](https://img.shields.io/github/last-commit/glossia/lightning_css.svg)](https://github.com/glossia/lightning_css/commits/master)
+[![License](https://img.shields.io/hexpm/l/lightning_css.svg)](https://github.com/tuist/lightning_css/blob/master/LICENSE)
+[![Last Updated](https://img.shields.io/github/last-commit/tuist/lightning_css.svg)](https://github.com/tuist/lightning_css/commits/master)
 
 `lightning_css` is an Elixir package to integrate [Lightning CSS](https://lightningcss.dev/) into an Elixir project.
 

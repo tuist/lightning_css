@@ -2,7 +2,7 @@ defmodule LightningCSS.MixProject do
   use Mix.Project
 
   @version "0.4.0"
-  @source_url "https://github.com/glossia/lightning_css"
+  @source_url "https://github.com/tuist/lightning_css"
 
   def project do
     [
