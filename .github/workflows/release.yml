@@ -16,9 +16,6 @@ permissions:
   statuses: write
   packages: write
 
-env:
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
 jobs:
   release:
     name: Release
@@ -45,6 +42,8 @@ jobs:
       - run: mix deps.get
       - name: Check if there are releasable changes
         id: is-releasable
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           bumped_output=$(git cliff --bump --unreleased)
           changelog_content=$(cat CHANGELOG.md)
