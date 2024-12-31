@@ -36,6 +36,7 @@ defmodule LightningCSS.Architectures do
 
     case arch_info() do
       {"arm", _} -> "darwin-arm64"
+      {"aarch64", _} -> "darwin-arm64"
       {"x86_64", _} -> "darwin-x64"
       _ -> unsupported_arch()
     end
