@@ -52,8 +52,14 @@ jobs:
           changelog_hash=$(echo -n "$changelog_content" | shasum -a 256 | awk '{print $1}')
 
           if [ "$bumped_hash" != "$changelog_hash" ]; then
+            echo "A new version should be released"
+            echo "Bumped: $bumped_hash"
+            echo "Changelog: $changelog_hash"
             echo "should-release=true" >> $GITHUB_ENV
           else
+            echo "No new version should be released"
+            echo "Bumped: $bumped_hash"
+            echo "Changelog: $changelog_hash"
             echo "should-release=false" >> $GITHUB_ENV
           fi
 
