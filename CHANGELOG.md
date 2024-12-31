@@ -8,25 +8,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.5.1] - 2024-12-31
 ### Details
 #### Chore
-- Update dependency elixir to v1.18.1
-- Update actions/checkout digest to 11bd719
-- Update dependency erlang to v27
+- Add Styler plugin and update dependencies by @pepicrft
+- Update GitHub Actions workflow for conventional pull requests by @pepicrft
+- Add .editorconfig and GitHub Actions release workflow by @pepicrft
+- Update Renovate configuration and add GitHub Actions workflow by @pepicrft
+- Add configuration files for git-cliff and initialize changelog by @pepicrft
+- Update dependency elixir to v1.18.1 by @renovate[bot]
+- Update actions/checkout digest to 11bd719 by @renovate[bot]
+- Update dependency erlang to v27 by @renovate[bot]
 
 #### Fix
-- Support for aarch64-apple-darwin
+- Support for aarch64-apple-darwin by @joelpaulkoch
 
+## New Contributors
+* @joelpaulkoch made their first contribution
 ## [0.5.0] - 2024-05-15
 ### Details
 #### Chore
-- Update dependency elixir to v1.16.2
-- Update actions/cache action to v4
-- Update actions/checkout digest to 0ad4b8f
-- Update dependency erlang to v26.2.5
-- Update dependency elixir to v1.16.0
+- Update dependency elixir to v1.16.2 by @renovate[bot]
+- Update actions/cache action to v4 by @renovate[bot]
+- Update actions/checkout digest to 0ad4b8f by @renovate[bot]
+- Update dependency erlang to v26.2.5 by @renovate[bot]
+- Update dependency elixir to v1.16.0 by @renovate[bot]
 
 #### Docs
-- Fix watcher example
+- Fix watcher example by @samgaw
 
+## New Contributors
+* @maltoe made their first contribution
+* @samgaw made their first contribution
 [0.5.1]: https://github.com/tuist/lightning_css/compare/0.5.0..0.5.1
 [0.5.0]: https://github.com/tuist/lightning_css/compare/0.4.0..0.5.0
 
