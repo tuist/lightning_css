@@ -59,7 +59,7 @@ defmodule LightningCSS.Architectures do
           _ -> unsupported_arch()
         end
 
-      unless toolchain in ~w[gnu musl] do
+      if toolchain not in ~w[gnu musl] do
         unsupported_arch()
       end
 
