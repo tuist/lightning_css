@@ -77,7 +77,7 @@ jobs:
       - name: Update version in mix.exs
         if: env.should-release == 'true'
         run: |
-          sed -i '' 's/@version ".*"/@version "${{ steps.next-version.outputs.NEXT_VERSION }}"/' mix.exs
+          sed -i 's/@version ".*"/@version "${{ steps.next-version.outputs.NEXT_VERSION }}"/' mix.exs
           git add mix.exs
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
