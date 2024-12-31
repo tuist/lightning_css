@@ -36,11 +36,12 @@ defmodule LightningCSS.MixProject do
       {:boundary, "~> 0.10", runtime: false},
       {:dialyxir, "~> 1.3", only: [:dev, :test], runtime: false},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
-      {:mimic, "~> 1.7", only: :test}
+      {:mimic, "~> 1.7", only: :test},
+      {:styler, "~> 1.2", only: [:dev, :test], runtime: false}
     ]
   end
 
-  defp package() do
+  defp package do
     [
       name: "lightning_css",
       licenses: ["MIT"],
@@ -48,7 +49,7 @@ defmodule LightningCSS.MixProject do
     ]
   end
 
-  defp docs() do
+  defp docs do
     [
       main: "LightningCSS",
       extras: [

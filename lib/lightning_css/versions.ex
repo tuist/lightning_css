@@ -15,7 +15,7 @@ defmodule LightningCSS.Versions do
   """
   def bin do
     path = LightningCSS.Paths.bin()
-    version_path = Path.dirname(path) |> Path.join("version")
+    version_path = path |> Path.dirname() |> Path.join("version")
 
     with true <- File.exists?(version_path),
          {:ok, result} <- File.read(version_path) do
@@ -45,7 +45,7 @@ defmodule LightningCSS.Versions do
   Returns the most recent Lightning CSS version known by this package.
   """
   @spec latest() :: String.t()
-  def latest() do
+  def latest do
     @latest_version
   end
 end

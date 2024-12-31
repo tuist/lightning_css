@@ -20,7 +20,7 @@ defmodule LightningCSS.Paths do
       end
   end
 
-  def cacertfile() do
+  def cacertfile do
     Application.get_env(:lightning_css, :cacerts_path) || CAStore.file_path()
   end
 end

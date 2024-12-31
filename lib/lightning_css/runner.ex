@@ -2,6 +2,7 @@ defmodule LightningCSS.Runner do
   @moduledoc false
 
   use GenServer
+
   require Logger
 
   @type init_args :: %{
@@ -18,7 +19,7 @@ defmodule LightningCSS.Runner do
   @spec init(args :: init_args) :: {:ok, any()}
   def init(%{profile: profile, extra_args: _, watch: watch} = args) do
     config = LightningCSS.Configuration.config_for!(profile)
-    cd = config |> Keyword.get(:cd, File.cwd!())
+    cd = Keyword.get(config, :cd, File.cwd!())
 
     watcher_pid =
       case {watch, config[:watch_files]} do
@@ -36,7 +37,7 @@ defmodule LightningCSS.Runner do
       args |> Map.put(:config, config) |> Map.put(:cd, cd) |> Map.put(:watcher_pid, watcher_pid)
 
     gen_server_pid = self()
-    args = args |> Map.put(:gen_server_pid, gen_server_pid)
+    args = Map.put(args, :gen_server_pid, gen_server_pid)
 
     %{pid: process_pid} =
       Task.async(fn ->
@@ -44,7 +45,7 @@ defmodule LightningCSS.Runner do
         __MODULE__.run_lightning_css(args)
       end)
 
-    args = args |> Map.put(:process_pid, process_pid)
+    args = Map.put(args, :process_pid, process_pid)
 
     {:ok, args}
   end
@@ -56,12 +57,7 @@ defmodule LightningCSS.Runner do
     |> Enum.uniq()
   end
 
-  def run_lightning_css(%{
-        config: config,
-        extra_args: extra_args,
-        cd: cd,
-        gen_server_pid: gen_server_pid
-      }) do
+  def run_lightning_css(%{config: config, extra_args: extra_args, cd: cd, gen_server_pid: gen_server_pid}) do
     args = config[:args] || []
 
     if args == [] and extra_args == [] do
@@ -75,8 +71,7 @@ defmodule LightningCSS.Runner do
       stderr_to_stdout: true
     ]
 
-    command_string =
-      ([Path.relative_to_cwd(LightningCSS.Paths.bin())] ++ args ++ extra_args) |> Enum.join(" ")
+    command_string = Enum.join([Path.relative_to_cwd(LightningCSS.Paths.bin())] ++ args ++ extra_args, " ")
 
     Logger.debug("Command: #{command_string}", opts)
 
@@ -96,7 +91,7 @@ defmodule LightningCSS.Runner do
         __MODULE__.run_lightning_css(state)
       end)
 
-    state = state |> Map.put(:process_pid, process_pid)
+    state = Map.put(state, :process_pid, process_pid)
     {:noreply, state}
   end
 

@@ -1,4 +1,5 @@
 defmodule Mix.Tasks.LightningCss.Install do
+  @shortdoc "Installs lightning_css under _build"
   @moduledoc """
   Installs lightning_css under `_build`.
 
@@ -21,10 +22,9 @@ defmodule Mix.Tasks.LightningCss.Install do
         does not exist
   """
 
-  @shortdoc "Installs lightning_css under _build"
-  @compile {:no_warn_undefined, Mix}
-
   use Mix.Task
+
+  @compile {:no_warn_undefined, Mix}
 
   @impl true
   def run(args) do
@@ -59,7 +59,7 @@ defmodule Mix.Tasks.LightningCss.Install do
     end
   end
 
-  defp latest_version?() do
+  defp latest_version? do
     version = LightningCSS.Versions.to_use()
     match?({:ok, ^version}, LightningCSS.Versions.bin())
   end

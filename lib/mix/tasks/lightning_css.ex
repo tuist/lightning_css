@@ -1,7 +1,5 @@
 defmodule Mix.Tasks.LightningCss do
   @shortdoc "Invokes lightning_css with the profile and args"
-  @compile {:no_warn_undefined, Mix}
-
   @moduledoc """
   Runs lightning_css with the given profile and args.
 
@@ -21,6 +19,8 @@ defmodule Mix.Tasks.LightningCss do
   """
 
   use Mix.Task
+
+  @compile {:no_warn_undefined, Mix}
 
   @impl true
   def run(args) do
