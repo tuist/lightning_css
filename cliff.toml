@@ -4,7 +4,6 @@
 [remote.github]
 owner = "tuist"
 repo = "lightning_css"
-# token = ""
 
 [changelog]
 # template for the changelog header
@@ -105,4 +104,4 @@ sort_commits = "newest"
 [bump]
 breaking_always_bump_major = true
 features_always_bump_minor=true
-initial_tag="0.5.0"
+initial_tag="0.5.2"
