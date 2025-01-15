@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.7.2] - 2025-01-15
+### Details
+#### Chore
+- Update dependency boundary to v0.10.4 by @renovate[bot] in [#32](https://github.com/tuist/lightning_css/pull/32)
+
 ## [0.7.1] - 2025-01-03
 ### Details
 #### Chore
@@ -58,6 +63,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## New Contributors
 * @maltoe made their first contribution
 * @samgaw made their first contribution
+[0.7.2]: https://github.com/tuist/lightning_css/compare/0.7.1..0.7.2
 [0.7.1]: https://github.com/tuist/lightning_css/compare/0.7.0..0.7.1
 [0.7.0]: https://github.com/tuist/lightning_css/compare/0.6.0..0.7.0
 [0.6.0]: https://github.com/tuist/lightning_css/compare/0.5.2..0.6.0
