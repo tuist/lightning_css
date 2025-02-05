@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.7.12] - 2025-02-05
+### Details
+#### Chore
+- Update dependency ex_doc to v0.37.0 by @renovate[bot] in [#42](https://github.com/tuist/lightning_css/pull/42)
+
 ## [0.7.11] - 2025-01-24
 ### Details
 #### Chore
@@ -108,6 +113,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## New Contributors
 * @maltoe made their first contribution
 * @samgaw made their first contribution
+[0.7.12]: https://github.com/tuist/lightning_css/compare/0.7.11..0.7.12
 [0.7.11]: https://github.com/tuist/lightning_css/compare/0.7.10..0.7.11
 [0.7.10]: https://github.com/tuist/lightning_css/compare/0.7.9..0.7.10
 [0.7.9]: https://github.com/tuist/lightning_css/compare/0.7.8..0.7.9
