@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.7.18] - 2025-02-22
+### Details
+#### Chore
+- Update dependency styler to v1.4.0 by @renovate[bot] in [#48](https://github.com/tuist/lightning_css/pull/48)
+
 ## [0.7.17] - 2025-02-22
 ### Details
 #### Chore
@@ -138,6 +143,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## New Contributors
 * @maltoe made their first contribution
 * @samgaw made their first contribution
+[0.7.18]: https://github.com/tuist/lightning_css/compare/0.7.17..0.7.18
 [0.7.17]: https://github.com/tuist/lightning_css/compare/0.7.16..0.7.17
 [0.7.16]: https://github.com/tuist/lightning_css/compare/0.7.15..0.7.16
 [0.7.15]: https://github.com/tuist/lightning_css/compare/0.7.14..0.7.15
