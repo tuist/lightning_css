@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.7.20] - 2025-03-05
+### Details
+#### Chore
+- Update dependency erlang to v27.3 by @renovate[bot] in [#50](https://github.com/tuist/lightning_css/pull/50)
+
 ## [0.7.19] - 2025-02-25
 ### Details
 #### Chore
@@ -148,6 +153,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## New Contributors
 * @maltoe made their first contribution
 * @samgaw made their first contribution
+[0.7.20]: https://github.com/tuist/lightning_css/compare/0.7.19..0.7.20
 [0.7.19]: https://github.com/tuist/lightning_css/compare/0.7.18..0.7.19
 [0.7.18]: https://github.com/tuist/lightning_css/compare/0.7.17..0.7.18
 [0.7.17]: https://github.com/tuist/lightning_css/compare/0.7.16..0.7.17
