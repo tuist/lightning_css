@@ -16,5 +16,5 @@
   "mimic": {:hex, :mimic, "1.12.0", "34c9d1fb8e756df09ca5f96861d273f2bb01063df1a6a51a4c101f9ad7f07a9c", [:mix], [{:ham, "~> 0.2", [hex: :ham, repo: "hexpm", optional: false]}], "hexpm", "eaa43d495d6f3bc8099b28886e05a1b09a2a6be083f6385c3abc17599e5e2c43"},
   "modulex": {:hex, :modulex, "0.7.0", "f25dfb787f432a936815fe6b824fc85c008d83278554a58fb3825c2e85333b0d", [:mix], [{:boundary, "~> 0.10", [hex: :boundary, repo: "hexpm", optional: false]}], "hexpm", "34033198548fd01b82575d3caaa9f6bf56edc54228a6ecb86898fdcf26175e68"},
   "nimble_parsec": {:hex, :nimble_parsec, "1.4.2", "8efba0122db06df95bfaa78f791344a89352ba04baedd3849593bfce4d0dc1c6", [:mix], [], "hexpm", "4b21398942dda052b403bbe1da991ccd03a053668d147d53fb8c4e0efe09c973"},
-  "styler": {:hex, :styler, "1.7.0", "3336e7547b5edaa3c5f7c861d8a45e1a450f9ed4db7d8f27ad54c12ab791bb66", [:mix], [], "hexpm", "ede783606fcd9bf06edfddbbedc36cc3a3af7b042cf0df8503aec0f82e016437"},
+  "styler": {:hex, :styler, "1.8.0", "87d78524b451f376581aa172d537f0c9aef93f4296e7ed307133f8a9bb6adc26", [:mix], [], "hexpm", "acbe10f82f24918a17f50c610afd87979e043126667ec7e6db2376e366a80dc2"},
 }
