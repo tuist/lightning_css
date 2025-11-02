@@ -1,4 +1,4 @@
 [tools]
 "git-cliff" = "2"
-"elixir" = "1.19.1"
+"elixir" = "1.19.2"
 "erlang" = "27.3.4"
