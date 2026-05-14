@@ -31,7 +31,7 @@ jobs:
           experimental: true
           version: 2024.11.8
       - name: Restore Cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         id: mix-cache
         with:
           path: |
