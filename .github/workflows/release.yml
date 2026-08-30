@@ -98,7 +98,7 @@ jobs:
           sed -i 's/@version ".*"/@version "${{ steps.next-version.outputs.NEXT_VERSION }}"/' mix.exs
           git add mix.exs
       - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         if: env.should-release == 'true'
         with:
           draft: false
