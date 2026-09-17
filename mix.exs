@@ -33,7 +33,7 @@ defmodule LightningCSS.MixProject do
       {:file_system, "~> 0.2.10 or ~> 1.0"},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
       {:modulex, "~> 0.7.0", runtime: false},
-      {:boundary, "~> 0.10", runtime: false},
+      {:boundary, "~> 0.11", runtime: false},
       {:dialyxir, "~> 1.3", only: [:dev, :test], runtime: false},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:mimic, "~> 1.7", only: :test},
