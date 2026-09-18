@@ -50,21 +50,27 @@ defmodule LightningCSS.Architectures do
     else
       only_64bits()
 
-      arch =
-        case arch do
-          "amd64" -> "x64"
-          "x86_64" -> "x64"
-          "arm" -> "arm64"
-          "arm64" -> "arm64"
-          _ -> unsupported_arch()
-        end
+      linux_target(arch, toolchain)
+    end
+  end
 
-      if toolchain not in ~w[gnu musl] do
-        unsupported_arch()
+  @doc false
+  def linux_target(arch, toolchain) do
+    arch =
+      case arch do
+        "amd64" -> "x64"
+        "x86_64" -> "x64"
+        "arm" -> "arm64"
+        "arm64" -> "arm64"
+        "aarch64" -> "arm64"
+        _ -> unsupported_arch()
       end
 
-      "linux-#{arch}-#{toolchain}"
+    if toolchain not in ~w[gnu musl] do
+      unsupported_arch()
     end
+
+    "linux-#{arch}-#{toolchain}"
   end
 
   defp arch_info do
